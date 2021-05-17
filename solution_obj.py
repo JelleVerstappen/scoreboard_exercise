@@ -12,15 +12,15 @@ class Game:
         self.sets_home = 0
         self.sets_away = 0
         self.set_nr = 1
+        self.maxpoints = 25
 
     def get_max_points(self):
         """Geef het maximaal aantal punten voor deze set terug."""
         # TODO: Geef de correcte waarde terug afhankelijk van
         # de set_nr.
-        maxpoints = 25
         if self.set_nr == 5:
-            maxpoints = 15
-        return maxpoints
+            self.maxpoints = 15
+        return self.maxpoints
 
     def score(self, team):
         """Bereken de nieuwe stand als team `team` gescoord heeft.
@@ -35,13 +35,13 @@ class Game:
         if team == "H":
             self.points_home = self.points_home + 1
 
-        if self.points_home >= Game.get_max_points() and self.points_home >= self.points_away + 2:
+        if self.points_home >= self.maxpoints and self.points_home >= self.points_away + 2:
             self.points_home = 0
             self.points_away = 0
             self.sets_home = self.sets_home + 1
             self.set_nr = self.set_nr + 1
         
-        if self.points_away >= Game.get_max_points() and self.points_away >= self.points_home + 2:
+        if self.points_away >= self.maxpoints and self.points_away >= self.points_home + 2:
             self.points_home = 0
             self.points_away = 0
             self.sets_away = self.sets_away + 1
